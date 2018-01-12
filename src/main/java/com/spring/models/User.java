@@ -1,12 +1,15 @@
 package com.spring.models;
 
+import java.io.Serializable;
+
 /**
  *
  * @author JuraLocal
  */
-public class User {
+public class User implements Serializable{
     private int userId;
     private String name;
+    private String password;
     private boolean isAdmin;
 
     /**
@@ -49,5 +52,19 @@ public class User {
      */
     public void setIsAdmin(boolean isAdmin) {
         this.isAdmin = isAdmin;
+    }
+
+    /**
+     * @return the password
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * @param password the password to set
+     */
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
