@@ -15,14 +15,14 @@ public class IndexController {
     @Autowired
     ApplicationContext ctx;
     
-    @RequestMapping(value="/Home", method = RequestMethod.GET)
+    @RequestMapping(value={"/Home", "/"}, method = RequestMethod.GET)
     public String root(ModelMap model){
         Link l = ctx.getBean(LinkDAO.class).list().get(0);
         model.addAttribute("var", l.getLinkId());
         return "Index";
     }
     
-    @RequestMapping(value="/try", method = RequestMethod.GET)
+    @RequestMapping(value="/ChangeMain")
     public String viewIndex(ModelMap model){
         model.addAttribute("var", "some random return");
         return "Index";

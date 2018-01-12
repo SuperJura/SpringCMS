@@ -32,11 +32,11 @@ public class UserDAOImpl implements UserDAO{
         
         Session session = sessionFactory.openSession();
         Criteria cr = session.createCriteria(User.class);
-        Criterion name = Restrictions.eq("username", username);
+        Criterion name = Restrictions.eq("name", username);
         Criterion pass = Restrictions.eq("password", password);
 
         LogicalExpression and = Restrictions.and(name, pass);
-        
+        cr.add(and);
         User user = (User)cr.uniqueResult();
         session.close();
 

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.spring.models">    
+    <class name="User" table="&quot;User&quot;">
+        <id column="&quot;UserId&quot;" name="userId">
+          <generator class="native"/>
+        </id>
+        <property column="&quot;Name&quot;" name="name"/>     
+        <property column="&quot;Password&quot;" name="password"/>
+        <property column="&quot;Admin&quot;" name="isAdmin"/>
+    </class>
+</hibernate-mapping>

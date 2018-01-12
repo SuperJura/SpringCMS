@@ -7,6 +7,8 @@ package com.spring.configs;
 
 import com.spring.db.interfaces.LinkDAO;
 import com.spring.db.LinkDAOImpl;
+import com.spring.db.UserDAOImpl;
+import com.spring.db.interfaces.UserDAO;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -45,8 +47,12 @@ public class DbConfig {
     @Bean
     public LinkDAO linkDAO(){
         LinkDAO dao = new LinkDAOImpl(sessionFactory().getObject());
-        
         return dao;
     }
     
+    @Bean
+    public UserDAO userDAO(){
+        UserDAO dao = new UserDAOImpl(sessionFactory().getObject());
+        return dao;
+    }
 }
