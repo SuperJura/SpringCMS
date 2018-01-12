@@ -1,0 +1,38 @@
+CREATE TABLE public."Link"
+(
+    "LinkId" SERIAL NOT NULL,
+    "Destination" text COLLATE pg_catalog."default",
+    "SubLink" boolean,
+    CONSTRAINT "Link_pkey" PRIMARY KEY ("LinkId")
+);
+
+CREATE TABLE public."Page"
+(
+    "PageId" SERIAL NOT NULL,
+    "Title" text COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT "Page_pkey" PRIMARY KEY ("PageId")
+);
+
+CREATE TABLE public."Text"
+(
+    "TextId" SERIAL NOT NULL,
+    "Value" text COLLATE pg_catalog."default" NOT NULL,
+    "IdPage" integer,
+    CONSTRAINT "Text_pkey" PRIMARY KEY ("TextId"),
+    CONSTRAINT "Text_IdPage_fkey" FOREIGN KEY ("IdPage")
+        REFERENCES public."Page" ("PageId") MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+);
+
+CREATE TABLE public."User"
+(
+    "UserId" SERIAL NOT NULL,
+    "Name" text COLLATE pg_catalog."default" NOT NULL,
+    "Password" text COLLATE pg_catalog."default" NOT NULL,
+    "Admin" boolean NOT NULL DEFAULT false,
+    CONSTRAINT "User_pkey" PRIMARY KEY ("UserId")
+);
+
+INSERT INTO public."User"("Name", "Password", "Admin")
+	VALUES ('Admin', 'admin', true);
