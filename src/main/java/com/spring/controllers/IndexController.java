@@ -1,7 +1,10 @@
 package com.spring.controllers;
 
 import com.spring.db.interfaces.LinkDAO;
+import com.spring.db.interfaces.PageDAO;
 import com.spring.models.Link;
+import com.spring.models.Page;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -17,14 +20,18 @@ public class IndexController {
     
     @RequestMapping(value={"/Home", "/"}, method = RequestMethod.GET)
     public String root(ModelMap model){
-        Link l = ctx.getBean(LinkDAO.class).list().get(0);
-        model.addAttribute("var", l.getLinkId());
         return "Index";
     }
     
     @RequestMapping(value="/ChangeMain")
-    public String viewIndex(ModelMap model){
-        model.addAttribute("var", "some random return");
-        return "Index";
+    public String viewIndex(HttpServletRequest request){
+        setPageToSession(request, 1);
+        return "changePage/ChangeMain";
+    }
+    
+    private void setPageToSession(HttpServletRequest request, int pageId){
+        PageDAO dao = (PageDAO)ctx.getBean(PageDAO.class);
+        Page page = dao.getPage(pageId);
+        request.getSession().setAttribute("page", page);
     }
 }

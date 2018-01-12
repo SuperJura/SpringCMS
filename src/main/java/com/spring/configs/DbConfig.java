@@ -7,7 +7,11 @@ package com.spring.configs;
 
 import com.spring.db.interfaces.LinkDAO;
 import com.spring.db.LinkDAOImpl;
+import com.spring.db.PageDAOImpl;
+import com.spring.db.TextDAOImpl;
 import com.spring.db.UserDAOImpl;
+import com.spring.db.interfaces.PageDAO;
+import com.spring.db.interfaces.TextDAO;
 import com.spring.db.interfaces.UserDAO;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.context.annotation.Bean;
@@ -53,6 +57,18 @@ public class DbConfig {
     @Bean
     public UserDAO userDAO(){
         UserDAO dao = new UserDAOImpl(sessionFactory().getObject());
+        return dao;
+    }
+    
+    @Bean
+    public PageDAO pageDAO(){
+        PageDAO dao = new PageDAOImpl(sessionFactory().getObject());
+        return dao;
+    }
+    
+    @Bean
+    public TextDAO textDAO(){
+        TextDAO dao = new TextDAOImpl(sessionFactory().getObject());
         return dao;
     }
 }

@@ -7,6 +7,7 @@ import java.io.Serializable;
  * @author JuraLocal
  */
 public class User implements Serializable{
+    
     private int userId;
     private String name;
     private String password;

@@ -3,7 +3,9 @@
 <hibernate-mapping package="com.spring.models">    
     <class name="User" table="&quot;User&quot;">
         <id column="&quot;UserId&quot;" name="userId">
-          <generator class="native"/>
+          <generator class="sequence">
+              <param name="sequence">&quot;User_UserId_seq&quot;</param>
+          </generator>
         </id>
         <property column="&quot;Name&quot;" name="name"/>     
         <property column="&quot;Password&quot;" name="password"/>

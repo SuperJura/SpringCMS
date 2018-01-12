@@ -3,7 +3,9 @@
 <hibernate-mapping package="com.spring.models">    
     <class name="Link" table="&quot;Link&quot;">
         <id column="&quot;LinkId&quot;" name="LinkId">
-          <generator class="native"/>
+          <generator class="sequence">
+              <param name="sequence">&quot;Link_LinkId_seq&quot;</param>
+          </generator>
         </id>
         <property column="&quot;Destination&quot;" name="destination"/>
         <property column="&quot;SubLink&quot;" name="subLink"/>

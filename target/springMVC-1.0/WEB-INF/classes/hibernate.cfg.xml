@@ -6,5 +6,7 @@
     <property name="show_sql">true</property>
     <mapping resource="/Link.hbm.xml"/>
     <mapping resource="User.hbm.xml"/>
+    <mapping resource="Page.hbm.xml"/>
+    <mapping resource="Text.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>
