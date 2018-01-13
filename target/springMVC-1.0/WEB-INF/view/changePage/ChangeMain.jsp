@@ -4,8 +4,9 @@
     Author     : JuraLocal
 --%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://jurica.adamek.java3" prefix="jl" %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
@@ -23,19 +24,21 @@
         </c:if>
         <c:if test="${page != null}">
             <div class="container">
-            <div class="jumbotron">
-              <h1>${page.title}</h1>      
-              <form action="/SpringCMS/ChangeTitle" method="post">
-                  <span>
-                      New title:
-                  </span>
-                  <input type="hidden" value="${page.pageId}" name="id"/>
-                  <input type="text" name="title"/>
-                  <input type="submit" value="Change title" class="btn btn-info"/>
-              </form>
-            </div>
-            <p>This is some text.</p>      
-            <p>This is another text.</p>      
+                <div class="jumbotron">
+                  <h1>${page.title}</h1>      
+                  <form action="/SpringCMS/ChangeTitle" method="post">
+                      <span>
+                          New title:
+                      </span>
+                      <input type="hidden" value="${page.pageId}" name="id"/>
+                      <input type="text" name="title"/>
+                      <input type="submit" value="Change title" class="btn btn-info"/>
+                  </form>
+                </div>  
+                  <jl:ChangePageText newText="true"/>
+                  <c:forEach items="${texts}"  var="t">
+                      <jl:ChangePageText textId="${t.textId}" textValue="${t.value}"/>
+                  </c:forEach>
           </div>
         </c:if>
         </body>

@@ -15,6 +15,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -35,7 +36,7 @@ public class PageDAOImpl implements PageDAO{
         Session session = sessionFactory.openSession();
         Criteria cr = session.createCriteria(Page.class);
 
-        List<Page> pages = (List<Page>)cr.list();
+        List<Page> pages = (List<Page>)cr.addOrder(Order.desc("pageId")).list();
         session.close();
         
         return pages;
@@ -77,5 +78,12 @@ public class PageDAOImpl implements PageDAO{
         session.close();
     }
 
-    
+    @Override
+    public void deletePage(Page page) {
+        Session session = sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
+        session.delete(page);
+        tx.commit();
+        session.close();
+    }
 }

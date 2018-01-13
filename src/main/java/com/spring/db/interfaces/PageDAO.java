@@ -13,4 +13,5 @@ public interface PageDAO {
     public Page getMainPage();
     public void insertPage(Page page);
     public void updatePage(Page page);
+    public void deletePage(Page page);
 }

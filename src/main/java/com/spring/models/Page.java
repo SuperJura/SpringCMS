@@ -15,6 +15,8 @@ public class Page implements Serializable {
     
     private int pageId;
     private String title;
+    DODAJ WIDGETE MANY TO MANY
+    //Bug kada brises page, pobrisi prvo sve Textove i WidgetPages
 
     /**
      * @return the pageId

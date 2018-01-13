@@ -1,6 +1,6 @@
+com\spring\db\interfaces\LinkDAO.class
+com\spring\controllers\IndexController.class
 com\spring\models\Link.class
 com\spring\configs\DbConfig.class
 com\spring\db\LinkDAOImpl.class
-com\spring\db\interfaces\LinkDAO.class
-com\spring\controllers\IndexController.class
 com\spring\configs\SpringConfig.class

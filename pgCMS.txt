@@ -10,7 +10,7 @@ CREATE TABLE public."Page"
 (
     "PageId" SERIAL NOT NULL,
     "Title" text COLLATE pg_catalog."default" NOT NULL,
-    CONSTRAINT "Page_pkey" PRIMARY KEY ("PageId")
+    CONSTRAINT "Page_pkey" PRIMARY KEY ("PageId"),
 );
 
 CREATE TABLE public."Text"
@@ -18,6 +18,7 @@ CREATE TABLE public."Text"
     "TextId" SERIAL NOT NULL,
     "Value" text COLLATE pg_catalog."default" NOT NULL,
     "IdPage" integer,
+    "DateAdded" date NOT NULL,
     CONSTRAINT "Text_pkey" PRIMARY KEY ("TextId"),
     CONSTRAINT "Text_IdPage_fkey" FOREIGN KEY ("IdPage")
         REFERENCES public."Page" ("PageId") MATCH SIMPLE
@@ -36,3 +37,22 @@ CREATE TABLE public."User"
 
 INSERT INTO public."User"("Name", "Password", "Admin")
 	VALUES ('Admin', 'admin', true);
+	
+	
+CREATE TABLE public."Widget"
+(
+    "WidgetId" SERIAL NOT NULL,
+    "WidgetName" text NOT NULL,
+    CONSTRAINT "Widget_pkey" PRIMARY KEY ("WidgetId")
+);
+
+INSERT INTO public."Widget"("WidgetName")
+	VALUES ('UserStory');
+	
+		
+CREATE TABLE public."Widget_Page"
+(
+    "WidgetPageId" SERIAL NOT NULL,
+    "IdWidget" int references "Widget"("WidgetId"),
+	"IdPage" int references "Page"("PageId")
+);

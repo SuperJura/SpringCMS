@@ -15,5 +15,8 @@ import java.util.List;
 public interface TextDAO {
     
     public List<Text> getAllTextsForPageId(int idPage);
+    public Text getText(int textId);
     public void insertNewText(Text text);
+    public void updateText(Text text);
+    public void deleteText(Text text);
 }

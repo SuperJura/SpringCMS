@@ -22,16 +22,12 @@ public class IndexController {
     public String root(ModelMap model){
         return "Index";
     }
+//    
+//    @RequestMapping(value="/ChangeMain")
+//    public String viewIndex(HttpServletRequest request){
+//        //TODO: ovo staviti negdje van
+//        ChangePageController.setPageToSession(1, request, ctx);
+//        return "changePage/ChangeMain";
+//    }
     
-    @RequestMapping(value="/ChangeMain")
-    public String viewIndex(HttpServletRequest request){
-        setPageToSession(request, 1);
-        return "changePage/ChangeMain";
-    }
-    
-    private void setPageToSession(HttpServletRequest request, int pageId){
-        PageDAO dao = (PageDAO)ctx.getBean(PageDAO.class);
-        Page page = dao.getPage(pageId);
-        request.getSession().setAttribute("page", page);
-    }
 }

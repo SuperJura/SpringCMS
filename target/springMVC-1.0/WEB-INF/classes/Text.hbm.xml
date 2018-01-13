@@ -2,11 +2,12 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="com.spring.models">    
     <class name="Text" table="&quot;Text&quot;">
-        <id column="&quot;TextId&quot;" name="TextId">
+        <id column="&quot;TextId&quot;" name="textId">
           <generator class="sequence">
               <param name="sequence">&quot;Text_TextId_seq&quot;</param>
           </generator>
-        </id>
+        </id>       
+        <property column="&quot;DateAdded&quot;" name="dateAdded"/>
         <property column="&quot;Value&quot;" name="value"/>
         <property column="&quot;IdPage&quot;" name="idPage"/>
     </class>

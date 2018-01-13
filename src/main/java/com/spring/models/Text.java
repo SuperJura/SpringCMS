@@ -6,6 +6,7 @@
 package com.spring.models;
 
 import java.io.Serializable;
+import java.sql.Date;
 /**
  *
  * @author JuraLocal
@@ -15,6 +16,7 @@ public class Text implements Serializable {
     private int textId;
     private String value;
     private int idPage;
+    private Date dateAdded;
 
     /**
      * @return the textId
@@ -56,5 +58,19 @@ public class Text implements Serializable {
      */
     public void setIdPage(int idPage) {
         this.idPage = idPage;
+    }
+
+    /**
+     * @return the dateAdded
+     */
+    public Date getDateAdded() {
+        return dateAdded;
+    }
+
+    /**
+     * @param dateAdded the dateAdded to set
+     */
+    public void setDateAdded(Date dateAdded) {
+        this.dateAdded = dateAdded;
     }
 }
