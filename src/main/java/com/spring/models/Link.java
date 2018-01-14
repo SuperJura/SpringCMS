@@ -15,7 +15,7 @@ public class Link {
     private Set<Link> parentLink = new HashSet<Link>();
     private Set<Link> childLinks = new HashSet<Link>();
 
-    protected Link() {
+    public Link() {
     }
 
     /**

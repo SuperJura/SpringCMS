@@ -27,32 +27,34 @@
                     <div class="jumbotron">
                       <h1>${page.title}</h1>      
                       <form action="/SpringCMS/ChangeTitle" method="post">
-                          <span>
-                              New title:
-                          </span>
-                          <input type="hidden" value="${page.pageId}" name="id"/>
-                          <input type="text" name="title"/>
-                          <input type="submit" value="Change title" class="btn btn-info"/>
-
-                          <div class="container floatRight">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="button-group">
-                                       <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span> <span class="caret"></span></button>
-                                         <ul class="dropdown-menu">
-                                            <li><b>Used widgets</b></li>
-                                            <c:forEach items="${page.widgets}" var="w">
-                                                <li><a href="/SpringCMS/RemoveWidget?pageId=${page.pageId}&widgetId=${w.widgetId}" class="small" data-value="option1" tabIndex="-1"><input type="checkbox" checked="true"/>&nbsp;${w.widgetName}</a></li>
-                                            </c:forEach>
-                                            <li><b>Unused widgets</b></li>
-                                            <c:forEach items="${widgets}" var="w">
-                                                <li><a href="/SpringCMS/AddWidget?pageId=${page.pageId}&widgetId=${w.widgetId}" class="small" data-value="option1" tabIndex="-1"><input type="checkbox"/>&nbsp;${w.widgetName}</a></li>
-                                            </c:forEach>
-                                         </ul>
-                                     </div>
-                                </div>
+                        <span>
+                            New title:
+                        </span>
+                        <input type="hidden" value="${page.pageId}" name="id"/>
+                        <input type="text" name="title"/>
+                        <input type="submit" value="Change title" class="btn btn-info"/>
+                        
+                        <c:if test="${page.pageId != 1}">
+                            <div class="container floatRight">
+                              <div class="row">
+                                  <div class="col-lg-12">
+                                      <div class="button-group">
+                                         <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span> <span class="caret"></span></button>
+                                           <ul class="dropdown-menu">
+                                              <li><b>Used widgets</b></li>
+                                              <c:forEach items="${page.widgets}" var="w">
+                                                  <li><a href="/SpringCMS/RemoveWidget?pageId=${page.pageId}&widgetId=${w.widgetId}" class="small" data-value="option1" tabIndex="-1"><input type="checkbox" checked="true"/>&nbsp;${w.widgetName}</a></li>
+                                              </c:forEach>
+                                              <li><b>Unused widgets</b></li>
+                                              <c:forEach items="${widgets}" var="w">
+                                                  <li><a href="/SpringCMS/AddWidget?pageId=${page.pageId}&widgetId=${w.widgetId}" class="small" data-value="option1" tabIndex="-1"><input type="checkbox"/>&nbsp;${w.widgetName}</a></li>
+                                              </c:forEach>
+                                           </ul>
+                                       </div>
+                                  </div>
+                              </div>
                             </div>
-                          </div>
+                        </c:if>
                       </form>
                     </div>  
                     <jl:ChangePageText newText="true"/>

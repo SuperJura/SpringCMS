@@ -11,6 +11,7 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -25,7 +26,7 @@ public class LinkDAOImpl implements LinkDAO {
     }
 
     @Override
-    public List<Link> list() {
+    public List<Link> getAllLinks() {
         Session session = sessionFactory.openSession();
         List<Link> listLink = (List<Link>) session
                 .createCriteria(Link.class)
@@ -42,5 +43,28 @@ public class LinkDAOImpl implements LinkDAO {
         session.save(link);
         tx.commit();
         session.close();
+    }
+
+    @Override
+    public List<Link> getAllBaseLinks() {
+        Session session = sessionFactory.openSession();
+        List<Link> listLink = (List<Link>) session
+                .createCriteria(Link.class)
+                .list();
+        session.close();
+
+        boolean removed = true;
+        while(removed){
+            for (Link link : listLink) {
+                removed = false;
+                if(link.getParentLink().size() > 0){
+                    listLink.remove(link);
+                    removed = true;
+                    break;
+                }
+            }
+        }
+        
+        return listLink;
     }
 }

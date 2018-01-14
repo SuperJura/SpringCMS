@@ -5,9 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@taglib uri="http://jurica.adamek.java3" prefix="jl" %>
 
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
@@ -20,9 +19,10 @@
             <title>JSP Page</title>
         </head>
         <body>
-                <jsp:include page="../partialJSP/Header.jsp"/>
-            <h1>
-            </h1>
+            <jsp:include page="../partialJSP/Header.jsp"/>
+            <c:forEach items="${links}" var="link">
+                <jl:DisplayLink link="${link}"/>
+            </c:forEach>
         </body>
     </html>
 </f:view>

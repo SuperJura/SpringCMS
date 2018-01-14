@@ -13,6 +13,7 @@ import java.util.List;
  * @author JuraLocal
  */
 public interface LinkDAO {
-    public List<Link> list();
+    public List<Link> getAllLinks();
+    public List<Link> getAllBaseLinks();
     public void insert(Link link);
 }

@@ -1,13 +1,7 @@
-<%-- 
-    Document   : DisplayPage
-    Created on : Jan 14, 2018, 5:03:31 PM
-    Author     : JuraLocal
---%>
-
-<%@tag description="put the tag description here" pageEncoding="UTF-8"%>
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<%-- The list of normal or fragment attributes can be specified here: --%>
 <div class="container">
     <div class="jumbotron">
       <h1>${page.title}</h1>      

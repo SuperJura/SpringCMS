@@ -13,7 +13,7 @@
         <jsp:include page="partialJSP/Header.jsp"/>
         <jl:headerMessage defaultMessage="Welcome to CMS!"/>
         <c:if test="${page != null}">
-            <jl:DisplayPage/>
+            <jsp:include page="partialJSP/display/DisplayPage.jsp"/>
         </c:if>
         <c:if test="${page == null}">
             <h2 class="center-block">
