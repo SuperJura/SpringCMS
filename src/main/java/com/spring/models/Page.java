@@ -18,8 +18,6 @@ public class Page implements Serializable {
     private int pageId;
     private String title;
     private Set<Widget> widgets = new HashSet<Widget>();
-    //DODAJ WIDGETE MANY TO MANY
-    //Bug kada brises page, pobrisi prvo sve Textove i WidgetPages
 
     /**
      * @return the pageId

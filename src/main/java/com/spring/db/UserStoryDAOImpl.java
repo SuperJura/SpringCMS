@@ -5,41 +5,44 @@
  */
 package com.spring.db;
 
-import com.spring.db.interfaces.LinkDAO;
+import com.spring.db.interfaces.UserStoryDAO;
 import com.spring.models.Link;
+import com.spring.models.UserStory;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
  * @author JuraLocal
  */
-public class LinkDAOImpl implements LinkDAO {
-    
-    private final SessionFactory sessionFactory;
+public class UserStoryDAOImpl implements UserStoryDAO{
 
-    public LinkDAOImpl(SessionFactory sessionFactory) {
+    SessionFactory sessionFactory;
+    
+    public UserStoryDAOImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
     @Override
-    public List<Link> list() {
+    public List<UserStory> getAllStoriesForPage(int pageId) {
         Session session = sessionFactory.openSession();
-        List<Link> listLink = (List<Link>) session
+        List<UserStory> stories = (List<UserStory>) session
                 .createCriteria(Link.class)
+                .add(Restrictions.eq("idPage", pageId))
                 .list();
         session.close();
 
-        return listLink;
+        return stories;
     }
 
     @Override
-    public void insert(Link link) {
+    public void insertNewStory(UserStory story) {
         Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
-        session.save(link);
+        session.save(story);
         tx.commit();
         session.close();
     }

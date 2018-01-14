@@ -11,4 +11,8 @@
     <name>ChangePageText</name>
     <path>/WEB-INF/tags/ChangePageText.tag</path>
   </tag-file>
+  <tag-file>
+    <name>DisplayPage</name>
+    <path>/WEB-INF/tags/DisplayPage.tag</path>
+  </tag-file>
 </taglib>

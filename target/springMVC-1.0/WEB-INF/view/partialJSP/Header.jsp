@@ -42,8 +42,7 @@
                 <ul class="nav navbar-nav">
                     <li><a href="/SpringCMS/PageDetails?pageId=1">Change main page</a></li>
                     <li><a href="/SpringCMS/ListPages">Change pages</a></li>
-                    <li><a href="/SpringCMS/ChangeLinks">Change links</a></li>
-                    <li><a href="/SpringCMS/ChangeHeader">Change header</a></li>
+                    <li><a href="/SpringCMS/GetHeader">Change header</a></li>
                 </ul>
             </div>
         </c:if>

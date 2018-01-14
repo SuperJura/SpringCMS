@@ -19,15 +19,8 @@ public class IndexController {
     ApplicationContext ctx;
     
     @RequestMapping(value={"/Home", "/"}, method = RequestMethod.GET)
-    public String root(ModelMap model){
+    public String root(HttpServletRequest request){
+        ChangePageController.setPageToSession(5, request, ctx);
         return "Index";
     }
-//    
-//    @RequestMapping(value="/ChangeMain")
-//    public String viewIndex(HttpServletRequest request){
-//        //TODO: ovo staviti negdje van
-//        ChangePageController.setPageToSession(1, request, ctx);
-//        return "changePage/ChangeMain";
-//    }
-    
 }

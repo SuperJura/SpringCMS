@@ -1,0 +1,30 @@
+<%-- 
+    Document   : DisplayPage
+    Created on : Jan 14, 2018, 5:03:31 PM
+    Author     : JuraLocal
+--%>
+
+<%@tag description="put the tag description here" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%-- The list of normal or fragment attributes can be specified here: --%>
+<div class="container">
+    <div class="jumbotron">
+      <h1>${page.title}</h1>      
+    </div>  
+    <c:forEach items="${texts}"  var="t">
+        <div class="panel panel-body">
+            ${t.value}
+        </div>
+    </c:forEach>
+    
+    <c:forEach items="${page.widgets}" var="w">
+        <c:if test="${w.widgetId == 1}">
+            <form action="/SpringCMS/WidgetSubmitUserStory" method="post">
+                <input type="text" placeholder="Enter your comment here" name="userTxt"/>
+                <input type="submit" class="btn btn-info" value="Submit User Story"/>
+            </form>
+        </c:if>
+    </c:forEach>
+        
+</div>

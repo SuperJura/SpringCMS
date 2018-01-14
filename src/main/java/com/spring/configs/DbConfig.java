@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.spring.configs;
 
 import com.spring.db.interfaces.LinkDAO;
@@ -10,10 +5,12 @@ import com.spring.db.LinkDAOImpl;
 import com.spring.db.PageDAOImpl;
 import com.spring.db.TextDAOImpl;
 import com.spring.db.UserDAOImpl;
+import com.spring.db.UserStoryDAOImpl;
 import com.spring.db.WidgetDAOImpl;
 import com.spring.db.interfaces.PageDAO;
 import com.spring.db.interfaces.TextDAO;
 import com.spring.db.interfaces.UserDAO;
+import com.spring.db.interfaces.UserStoryDAO;
 import com.spring.db.interfaces.WidgetDAO;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.context.annotation.Bean;
@@ -77,6 +74,12 @@ public class DbConfig {
     @Bean
     public WidgetDAO widgetDAO(){
         WidgetDAO dao = new WidgetDAOImpl(sessionFactory().getObject());
+        return dao;
+    }
+    
+    @Bean
+    public UserStoryDAO userStoryDAO(){
+        UserStoryDAO dao = new UserStoryDAOImpl(sessionFactory().getObject());
         return dao;
     }
 }

@@ -63,3 +63,12 @@ CREATE TABLE public."Widget_Page"
     "IdWidget" int references "Widget"("WidgetId"),
 	"IdPage" int references "Page"("PageId")
 );
+
+CREATE TABLE public."UserStory"
+(
+    "UserStoryId" SERIAL NOT NULL,
+    "StoryText" text NOT NULL,
+    "IdPage" int references "Page"("PageId"),
+    "IdUser" int references "User"("UserId"),
+    CONSTRAINT "UserStory_pkey" PRIMARY KEY ("UserStoryId")
+);
