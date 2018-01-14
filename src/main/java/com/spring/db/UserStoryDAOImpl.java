@@ -1,17 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.spring.db;
 
 import com.spring.db.interfaces.UserStoryDAO;
-import com.spring.models.Link;
 import com.spring.models.UserStory;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -30,8 +25,9 @@ public class UserStoryDAOImpl implements UserStoryDAO{
     public List<UserStory> getAllStoriesForPage(int pageId) {
         Session session = sessionFactory.openSession();
         List<UserStory> stories = (List<UserStory>) session
-                .createCriteria(Link.class)
+                .createCriteria(UserStory.class)
                 .add(Restrictions.eq("idPage", pageId))
+                .addOrder(Order.desc("userStoryId"))
                 .list();
         session.close();
 

@@ -1,18 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.spring.controllers;
 
-import com.spring.db.interfaces.LinkDAO;
 import com.spring.db.interfaces.PageDAO;
 import com.spring.db.interfaces.TextDAO;
 import com.spring.db.interfaces.WidgetDAO;
-import com.spring.models.Link;
 import com.spring.models.Page;
 import com.spring.models.Text;
 import com.spring.models.Widget;
+import com.spring.util.SessionUtils;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,7 +51,7 @@ public class ChangePageController {
         p.setTitle("New page");
         dao.insertPage(p);
         if(id != null && id == 1){
-            setPageToSession(id, request, ctx);
+            SessionUtils.setPageForEdit(id, request, ctx);
             return "changePage/ChangeMain";
         }
         else{
@@ -68,7 +62,7 @@ public class ChangePageController {
     
     @RequestMapping(value = "/PageDetails")
     public String PageDetails(@RequestParam int pageId, HttpServletRequest request){
-        setPageToSession(pageId, request, ctx);
+        SessionUtils.setPageForEdit(pageId, request, ctx);
         return "changePage/ChangeMain";
     }
     
@@ -80,7 +74,7 @@ public class ChangePageController {
         p.setTitle(title);
         dao.updatePage(p);
         
-        setPageToSession(id, request, ctx);
+        SessionUtils.setPageForEdit(id, request, ctx);
         return "changePage/ChangeMain";
     }
     
@@ -91,7 +85,7 @@ public class ChangePageController {
         text.setValue(value);
         dao.updateText(text);
         
-        setPageToSession(text.getIdPage(), request, ctx);
+        SessionUtils.setPageForEdit(text.getIdPage(), request, ctx);
         return "changePage/ChangeMain";
     }
     
@@ -105,7 +99,7 @@ public class ChangePageController {
         
         textDao.insertNewText(text);
         
-        setPageToSession(pageId, request, ctx);
+        SessionUtils.setPageForEdit(pageId, request, ctx);
         return "changePage/ChangeMain";
     }
     
@@ -116,7 +110,7 @@ public class ChangePageController {
         int pageId = text.getIdPage();
         textDao.deleteText(text);
         
-        setPageToSession(pageId, request, ctx);
+        SessionUtils.setPageForEdit(pageId, request, ctx);
         return "changePage/ChangeMain";
     }
     
@@ -132,7 +126,7 @@ public class ChangePageController {
         page.getWidgets().add(widget);
         pageDao.updatePage(page);
         
-        setPageToSession(pageId, request, ctx);
+        SessionUtils.setPageForEdit(pageId, request, ctx);
         return "changePage/ChangeMain";
     }
     
@@ -149,45 +143,7 @@ public class ChangePageController {
         }
         pageDao.updatePage(page);
         
-        setPageToSession(pageId, request, ctx);
+        SessionUtils.setPageForEdit(pageId, request, ctx);
         return "changePage/ChangeMain";
-    }
-    
-    
-    public static void setPageToSession(int pageId, HttpServletRequest request, ApplicationContext ctx){
-        
-        LinkDAO links = ctx.getBean(LinkDAO.class);
-        List<Link> l = links.list();
-                
-        PageDAO pageDao = ctx.getBean(PageDAO.class);
-        TextDAO textDao = ctx.getBean(TextDAO.class);
-        WidgetDAO widgetDao = ctx.getBean(WidgetDAO.class);
-        
-        Page page = pageDao.getPage(pageId);
-        List<Text> texts = textDao.getAllTextsForPageId(pageId);
-        List<Widget> allWidgets = widgetDao.getAllWidgets();
-        
-        boolean removedWidget = true;
-        while(removedWidget){
-            removedWidget = false;
-            for (Widget pageWidget : page.getWidgets()) {
-                for (Widget allWidget : allWidgets) {
-                    if(pageWidget.getWidgetId() == allWidget.getWidgetId()){
-                        allWidgets.remove(allWidget);
-                        removedWidget = true;
-                        break;
-                    }
-                }
-                if(removedWidget) break;
-            }
-        }
-        
-        request.removeAttribute("page");
-        request.removeAttribute("texts");
-        request.removeAttribute("widgets");
-
-        request.getSession().setAttribute("page", page);
-        request.getSession().setAttribute("texts", texts);
-        request.getSession().setAttribute("widgets", allWidgets);
     }
 }

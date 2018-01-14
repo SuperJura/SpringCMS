@@ -9,5 +9,6 @@
     <mapping resource="Page.hbm.xml"/>
     <mapping resource="Text.hbm.xml"/>
     <mapping resource="Widget.hbm.xml"/>
+    <mapping resource="UserStory.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

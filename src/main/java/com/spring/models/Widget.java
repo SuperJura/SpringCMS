@@ -4,6 +4,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Widget {
+    
+    public static final int WIDGET_USER_STORY = 1;
+    public static final int WIDGET_PICTURE = 2;
+
+    
     private int widgetId;
     private String widgetName;
     private Set<Page> pages = new HashSet<Page>();

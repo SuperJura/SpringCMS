@@ -4,6 +4,7 @@ import com.spring.db.interfaces.LinkDAO;
 import com.spring.db.interfaces.PageDAO;
 import com.spring.models.Link;
 import com.spring.models.Page;
+import com.spring.util.SessionUtils;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -20,7 +21,7 @@ public class IndexController {
     
     @RequestMapping(value={"/Home", "/"}, method = RequestMethod.GET)
     public String root(HttpServletRequest request){
-        ChangePageController.setPageToSession(5, request, ctx);
+        SessionUtils.setPageForDisplay(5, request, ctx);
         return "Index";
     }
 }

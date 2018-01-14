@@ -20,10 +20,23 @@
     
     <c:forEach items="${page.widgets}" var="w">
         <c:if test="${w.widgetId == 1}">
-            <form action="/SpringCMS/WidgetSubmitUserStory" method="post">
-                <input type="text" placeholder="Enter your comment here" name="userTxt"/>
-                <input type="submit" class="btn btn-info" value="Submit User Story"/>
-            </form>
+            <c:if test="${user != null}">
+                <form action="/SpringCMS/WidgetSubmitUserStory" method="post">
+                    <input type="hidden" name="pageId" value="${page.pageId}"/>
+                    <input type="text" placeholder="Enter your comment here" name="userTxt"/>
+                    <input type="submit" class="btn btn-info" value="Submit User Story"/>
+                </form>
+            </c:if>
+            <c:if test="${userStories != null}">
+                <br>
+                <h2>User Stories:</h2>
+                <c:forEach items="${userStories}" var="story">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">${story.user.name}</div>
+                        <div class="panel-body">${story.storyText}</div>
+                    </div>
+                </c:forEach>
+            </c:if>
         </c:if>
     </c:forEach>
         

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.spring.models">    
+    <class name="UserStory" table="&quot;UserStory&quot;">
+        <id column="&quot;UserStoryId&quot;" name="userStoryId">
+            <generator class="sequence">
+                <param name="sequence">&quot;UserStory_UserStoryId_seq&quot;</param>
+            </generator>
+        </id>
+        <property column="&quot;StoryText&quot;" name="storyText"/>
+        <property column="&quot;IdPage&quot;" name="idPage"/>
+        <many-to-one name="user" column="&quot;IdUser&quot;" class="com.spring.models.User" not-null="true" lazy="false"/>
+        
+    </class>
+</hibernate-mapping>
