@@ -96,4 +96,9 @@
     margin-top: 5px;
 }
 
+.floatRight{
+    float: right;
+    text-align: right;
+}
+
 </style>

@@ -1,8 +1,12 @@
 package com.spring.models;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Widget {
     private int widgetId;
     private String widgetName;
+    private Set<Page> pages = new HashSet<Page>();
 
     /**
      * @return the widgetId
@@ -30,5 +34,19 @@ public class Widget {
      */
     public void setWidgetName(String widgetName) {
         this.widgetName = widgetName;
+    }
+
+    /**
+     * @return the pages
+     */
+    public Set<Page> getPages() {
+        return pages;
+    }
+
+    /**
+     * @param pages the pages to set
+     */
+    public void setPages(Set<Page> pages) {
+        this.pages = pages;
     }
 }

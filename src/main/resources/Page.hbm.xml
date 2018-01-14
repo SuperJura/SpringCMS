@@ -8,5 +8,14 @@
             </generator>
         </id>
         <property column="&quot;Title&quot;" name="title"/>
+        
+        <set name="widgets" table="&quot;Widget_Page&quot;" inverse="false" lazy="false" fetch="select">
+            <key>
+                <column name="&quot;IdPage&quot;" not-null="true"/>
+            </key>
+            <many-to-many entity-name="com.spring.models.Widget">
+                <column name="&quot;IdWidget&quot;" not-null="true"/>
+            </many-to-many>
+        </set>
     </class>
 </hibernate-mapping>

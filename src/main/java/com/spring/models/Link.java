@@ -1,9 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.spring.models;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
@@ -12,21 +10,14 @@ package com.spring.models;
 public class Link {
     
     private int linkId;
-    private String destination;
-    private boolean subLink;
-    private int[] subLinkIds;
+    private int desPageId;
+    private String linkTitle;
+    private Set<Link> parentLink = new HashSet<Link>();
+    private Set<Link> childLinks = new HashSet<Link>();
 
     protected Link() {
     }
 
-    public Link(String destination, boolean subLink, int[] subLinkIds) {
-        this.destination = destination;
-        this.subLink = subLink;
-        this.subLinkIds = subLinkIds;
-    }
-
-    
-    
     /**
      * @return the linkId
      */
@@ -42,44 +33,63 @@ public class Link {
     }
 
     /**
-     * @return the destination
+     * @return the desPageId
      */
-    public String getDestination() {
-        return destination;
+    public int getDesPageId() {
+        return desPageId;
     }
 
     /**
-     * @param destination the destination to set
+     * @param desPageId the desPageId to set
      */
-    public void setDestination(String destination) {
-        this.destination = destination;
+    public void setDesPageId(int desPageId) {
+        this.desPageId = desPageId;
     }
 
     /**
-     * @return the subLink
+     * @return the childLinks
      */
-    public boolean isSubLink() {
-        return subLink;
+    public Set<Link> getChildLinks() {
+        return childLinks;
     }
 
     /**
-     * @param subLink the subLink to set
+     * @param childLinks the childLinks to set
      */
-    public void setSubLink(boolean subLink) {
-        this.subLink = subLink;
+    public void setChildLinks(Set<Link> childLinks) {
+        this.childLinks = childLinks;
     }
 
     /**
-     * @return the subLinkIds
+     * @return the parentLink
      */
-    public int[] getSubLinkIds() {
-        return subLinkIds;
+    public Set<Link> getParentLink() {
+        return parentLink;
     }
 
     /**
-     * @param subLinkIds the subLinkIds to set
+     * @param parentLink the parentLink to set
      */
-    public void setSubLinkIds(int[] subLinkIds) {
-        this.subLinkIds = subLinkIds;
+    public void setParentLink(Set<Link> parentLink) {
+        this.parentLink = parentLink;
+    }
+
+    /**
+     * @return the linkTitle
+     */
+    public String getLinkTitle() {
+        return linkTitle;
+    }
+
+    /**
+     * @param linkTitle the linkTitle to set
+     */
+    public void setLinkTitle(String linkTitle) {
+        this.linkTitle = linkTitle;
+    }
+    
+    public void changeParent(Link link){
+        this.parentLink.clear();
+        this.parentLink.add(link);
     }
 }

@@ -6,6 +6,8 @@
 package com.spring.models;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
@@ -15,7 +17,8 @@ public class Page implements Serializable {
     
     private int pageId;
     private String title;
-    DODAJ WIDGETE MANY TO MANY
+    private Set<Widget> widgets = new HashSet<Widget>();
+    //DODAJ WIDGETE MANY TO MANY
     //Bug kada brises page, pobrisi prvo sve Textove i WidgetPages
 
     /**
@@ -44,5 +47,19 @@ public class Page implements Serializable {
      */
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    /**
+     * @return the widgets
+     */
+    public Set<Widget> getWidgets() {
+        return widgets;
+    }
+
+    /**
+     * @param widgets the widgets to set
+     */
+    public void setWidgets(Set<Widget> widgets) {
+        this.widgets = widgets;
     }
 }

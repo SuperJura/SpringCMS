@@ -10,9 +10,11 @@ import com.spring.db.LinkDAOImpl;
 import com.spring.db.PageDAOImpl;
 import com.spring.db.TextDAOImpl;
 import com.spring.db.UserDAOImpl;
+import com.spring.db.WidgetDAOImpl;
 import com.spring.db.interfaces.PageDAO;
 import com.spring.db.interfaces.TextDAO;
 import com.spring.db.interfaces.UserDAO;
+import com.spring.db.interfaces.WidgetDAO;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -69,6 +71,12 @@ public class DbConfig {
     @Bean
     public TextDAO textDAO(){
         TextDAO dao = new TextDAOImpl(sessionFactory().getObject());
+        return dao;
+    }
+    
+    @Bean
+    public WidgetDAO widgetDAO(){
+        WidgetDAO dao = new WidgetDAOImpl(sessionFactory().getObject());
         return dao;
     }
 }

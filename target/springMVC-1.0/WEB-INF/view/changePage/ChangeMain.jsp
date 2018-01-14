@@ -15,7 +15,7 @@
     <html>
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-            <title>JSP Page</title>
+            <title>Change page</title>
         </head>
         <body>
         <jsp:include page="../partialJSP/Header.jsp"/>
@@ -33,12 +33,32 @@
                       <input type="hidden" value="${page.pageId}" name="id"/>
                       <input type="text" name="title"/>
                       <input type="submit" value="Change title" class="btn btn-info"/>
+                      
+                      <div class="container floatRight">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="button-group">
+                                   <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span> <span class="caret"></span></button>
+                                     <ul class="dropdown-menu">
+                                        <li><b>Used widgets</b></li>
+                                        <c:forEach items="${page.widgets}" var="w">
+                                            <li><a href="/SpringCMS/RemoveWidget?pageId=${page.pageId}&widgetId=${w.widgetId}" class="small" data-value="option1" tabIndex="-1"><input type="checkbox" checked="true"/>&nbsp;${w.widgetName}</a></li>
+                                        </c:forEach>
+                                        <li><b>Unused widgets</b></li>
+                                        <c:forEach items="${widgets}" var="w">
+                                            <li><a href="/SpringCMS/AddWidget?pageId=${page.pageId}&widgetId=${w.widgetId}" class="small" data-value="option1" tabIndex="-1"><input type="checkbox"/>&nbsp;${w.widgetName}</a></li>
+                                        </c:forEach>
+                                     </ul>
+                                 </div>
+                            </div>
+                        </div>
+                      </div>
                   </form>
                 </div>  
-                  <jl:ChangePageText newText="true"/>
-                  <c:forEach items="${texts}"  var="t">
-                      <jl:ChangePageText textId="${t.textId}" textValue="${t.value}"/>
-                  </c:forEach>
+                <jl:ChangePageText newText="true"/>
+                <c:forEach items="${texts}"  var="t">
+                    <jl:ChangePageText textId="${t.textId}" textValue="${t.value}"/>
+                </c:forEach>
           </div>
         </c:if>
         </body>

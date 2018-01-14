@@ -6,6 +6,7 @@
 package com.spring.db;
 
 import com.spring.db.interfaces.PageDAO;
+import com.spring.db.interfaces.TextDAO;
 import com.spring.models.Page;
 import com.spring.models.Text;
 import com.spring.models.User;
@@ -17,6 +18,7 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
@@ -25,6 +27,9 @@ import org.hibernate.criterion.Restrictions;
 public class PageDAOImpl implements PageDAO{
 
     private SessionFactory sessionFactory;
+    
+    @Autowired
+    TextDAO textDao;
 
     public PageDAOImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
@@ -82,6 +87,11 @@ public class PageDAOImpl implements PageDAO{
     public void deletePage(Page page) {
         Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
+
+        List<Text> texts = textDao.getAllTextsForPageId(page.getPageId());
+        for (int i = 0; i < texts.size(); i++) {
+            session.delete(texts.get(i));
+        }
         session.delete(page);
         tx.commit();
         session.close();

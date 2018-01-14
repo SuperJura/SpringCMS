@@ -1,16 +1,23 @@
 CREATE TABLE public."Link"
 (
     "LinkId" SERIAL NOT NULL,
-    "Destination" text COLLATE pg_catalog."default",
-    "SubLink" boolean,
+    "LinkTitle" text NOT NULL,
+    "DesPageId" int DEFAULT -1,
     CONSTRAINT "Link_pkey" PRIMARY KEY ("LinkId")
+);
+
+CREATE TABLE public."Link_Link"
+(
+    "LinkLinkId" SERIAL NOT NULL,
+    "IdParentLink" int references "Link"("LinkId"),
+	"IdChildLink" int references "Link"("LinkId")
 );
 
 CREATE TABLE public."Page"
 (
     "PageId" SERIAL NOT NULL,
     "Title" text COLLATE pg_catalog."default" NOT NULL,
-    CONSTRAINT "Page_pkey" PRIMARY KEY ("PageId"),
+    CONSTRAINT "Page_pkey" PRIMARY KEY ("PageId")
 );
 
 CREATE TABLE public."Text"

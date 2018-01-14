@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.spring.models">    
+    <class name="Widget" table="&quot;Widget&quot;">
+        <id column="&quot;WidgetId&quot;" name="widgetId">
+          <generator class="sequence">
+              <param name="sequence">&quot;Widget_WidgetId_seq&quot;</param>
+          </generator>
+        </id>
+        <property column="&quot;WidgetName&quot;" name="widgetName"/>     
+        <set name="pages" table="&quot;Widget_Page&quot;" inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="&quot;IdWidget&quot;" not-null="true"/>
+            </key>
+            <many-to-many entity-name="com.spring.models.Page">
+                <column name="&quot;IdPage&quot;" not-null="true"/>
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

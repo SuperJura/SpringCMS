@@ -11,4 +11,5 @@ import java.util.List;
 public interface WidgetDAO {
     
     public List<Widget> getAllWidgets();
+    public Widget getWidgetForId(int widgetId);
 }
