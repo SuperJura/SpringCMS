@@ -34,7 +34,7 @@ public class ChangeHeaderController {
     }
     
     @RequestMapping(value="/AddNewLink")
-    public String addBaseLink(@RequestParam int parentLinkId, HttpServletRequest request){
+    public String addNewLink(@RequestParam int parentLinkId, HttpServletRequest request){
         LinkDAO linkDao = ctx.getBean(LinkDAO.class);
         
         Link link = new Link();
@@ -90,6 +90,7 @@ public class ChangeHeaderController {
         linkDao.update(link);
         
         request.getSession().setAttribute("changeLink", link);
+        request.getSession().setAttribute("links", linkDao.getAllBaseLinks());
         return "changeHeader/ChangeHeader";
     }
     

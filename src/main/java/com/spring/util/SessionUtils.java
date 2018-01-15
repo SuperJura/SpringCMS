@@ -78,6 +78,8 @@ public class SessionUtils {
             request.getSession().setAttribute("userStories", storiesDao.getAllStoriesForPage(pageId));
         }
         
+        List<Link> links = linkDao.getAllBaseLinks();
+        
         request.removeAttribute("page");
         request.removeAttribute("texts");
         request.removeAttribute("widgets");
@@ -85,6 +87,6 @@ public class SessionUtils {
 
         request.getSession().setAttribute("page", page);
         request.getSession().setAttribute("texts", texts);
-        request.getSession().setAttribute("links", linkDao.getAllBaseLinks());
+        request.getSession().setAttribute("links", links);
     }
 }

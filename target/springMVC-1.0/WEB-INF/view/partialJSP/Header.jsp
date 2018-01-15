@@ -19,7 +19,20 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
- 
+            <a href="/SpringCMS/Home" class="btn btn-info topMargin">Home Page</a>
+        </div>
+        <div class="nav navbar-nav">
+            <div class="dropdown topMargin leftMargin">
+                    <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown">
+                        Links
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <c:forEach items="${links}" var="l">
+                           <jl:DisplayLink displayLink="${l}"/>
+                        </c:forEach>
+                    </ul>
+                </div>
         </div>
         <c:if test="${user == null}">
             <div class="center-block pull-right">
@@ -151,6 +164,11 @@
     top: 0;
     left: 100%;
     margin-top: -1px;
+}
+
+.userStory{
+    width:150px;
+    word-wrap:break-word;
 }
 
 </style>

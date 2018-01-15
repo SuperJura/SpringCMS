@@ -8,7 +8,9 @@
     </div>  
     <c:forEach items="${texts}"  var="t">
         <div class="panel panel-body">
-            ${t.value}
+            <span class="userStory">
+                ${t.value}
+            </span>
         </div>
     </c:forEach>
     
@@ -27,7 +29,11 @@
                 <c:forEach items="${userStories}" var="story">
                     <div class="panel panel-default">
                         <div class="panel-heading">${story.user.name}</div>
-                        <div class="panel-body">${story.storyText}</div>
+                        <div class="panel-body">
+                            <span class="userStory">
+                                ${story.storyText}
+                            </span>
+                        </div>
                     </div>
                 </c:forEach>
             </c:if>
