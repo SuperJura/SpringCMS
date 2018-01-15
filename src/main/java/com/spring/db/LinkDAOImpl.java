@@ -11,6 +11,7 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -35,16 +36,20 @@ public class LinkDAOImpl implements LinkDAO {
 
         return listLink;
     }
-
+    
     @Override
-    public void insert(Link link) {
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.beginTransaction();
-        session.save(link);
-        tx.commit();
+    public Link getLinkForId(int linkId) {
+                Session session = sessionFactory.openSession();
+        Link link = (Link) session
+                .createCriteria(Link.class)
+                .add(Restrictions.eq("linkId", linkId))
+                .addOrder(Order.asc("linkId"))
+                .uniqueResult();
         session.close();
-    }
 
+        return link;
+    }
+    
     @Override
     public List<Link> getAllBaseLinks() {
         Session session = sessionFactory.openSession();
@@ -66,5 +71,35 @@ public class LinkDAOImpl implements LinkDAO {
         }
         
         return listLink;
+    }
+
+    @Override
+    public void insert(Link link) {
+        Session session = sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
+        session.save(link);
+        tx.commit();
+        session.close();
+    }
+
+    @Override
+    public void update(Link link) {
+        Session session = sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
+        session.update(link);
+        tx.commit();
+        session.close();
+    }
+
+    @Override
+    public void delete(Link link) {
+        Session session = sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
+        for (Link child : link.getChildLinks()) {
+            delete(child);
+        }
+        session.delete(link);
+        tx.commit();
+        session.close();
     }
 }

@@ -61,6 +61,7 @@ public class SessionUtils {
     public static void setPageForDisplay(int pageId, HttpServletRequest request, ApplicationContext ctx){
         PageDAO pageDao = ctx.getBean(PageDAO.class);
         TextDAO textDao = ctx.getBean(TextDAO.class);
+        LinkDAO linkDao = ctx.getBean(LinkDAO.class);
         
         Page page = pageDao.getPage(pageId);
         List<Text> texts = textDao.getAllTextsForPageId(pageId);
@@ -80,8 +81,10 @@ public class SessionUtils {
         request.removeAttribute("page");
         request.removeAttribute("texts");
         request.removeAttribute("widgets");
+        request.removeAttribute("links");
 
         request.getSession().setAttribute("page", page);
         request.getSession().setAttribute("texts", texts);
+        request.getSession().setAttribute("links", linkDao.getAllBaseLinks());
     }
 }

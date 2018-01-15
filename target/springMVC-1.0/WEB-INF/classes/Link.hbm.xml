@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="com.spring.models">    
     <class name="Link" table="&quot;Link&quot;">
-        <id column="&quot;LinkId&quot;" name="LinkId">
+        <id column="&quot;LinkId&quot;" name="linkId">
           <generator class="sequence">
               <param name="sequence">&quot;Link_LinkId_seq&quot;</param>
           </generator>

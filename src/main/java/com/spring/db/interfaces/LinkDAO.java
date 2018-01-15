@@ -15,5 +15,8 @@ import java.util.List;
 public interface LinkDAO {
     public List<Link> getAllLinks();
     public List<Link> getAllBaseLinks();
+    public Link getLinkForId(int linkId);
     public void insert(Link link);
+    public void update(Link link);
+    public void delete(Link link);
 }

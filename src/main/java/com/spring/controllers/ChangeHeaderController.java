@@ -1,6 +1,7 @@
 package com.spring.controllers;
 
 import com.spring.db.interfaces.LinkDAO;
+import com.spring.db.interfaces.PageDAO;
 import com.spring.models.Link;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -23,24 +24,97 @@ public class ChangeHeaderController {
     @RequestMapping(value="/ChangeHeader")
     public String changeHeader(HttpServletRequest request){
         LinkDAO linkDao = ctx.getBean(LinkDAO.class);
+        PageDAO pageDao = ctx.getBean(PageDAO.class);
         
         List<Link> links = linkDao.getAllBaseLinks();
         
         request.getSession().setAttribute("links", links);
+        request.getSession().setAttribute("pages", pageDao.getAllPages());
         return "changeHeader/ChangeHeader";
     }
     
-    @RequestMapping(value="/AddBaseLink")
-    public String addBaseLink(@RequestParam String linkTitle, HttpServletRequest request){
+    @RequestMapping(value="/AddNewLink")
+    public String addBaseLink(@RequestParam int parentLinkId, HttpServletRequest request){
         LinkDAO linkDao = ctx.getBean(LinkDAO.class);
         
         Link link = new Link();
-        link.setLinkTitle(linkTitle);
+        link.setLinkTitle("New Link");
+        link.setDesPageId(-1);
+        if(parentLinkId != -1){
+            link.changeParent(linkDao.getLinkForId(parentLinkId));
+        }
 
         linkDao.insert(link);
         List<Link> links = linkDao.getAllBaseLinks();
         
         request.getSession().setAttribute("links", links);
+        request.getSession().setAttribute("changeLink", link);
         return "changeHeader/ChangeHeader";
+    }
+    
+    @RequestMapping(value="/ChangeLink")
+    public String changeLink(@RequestParam int linkId, HttpServletRequest request){
+        LinkDAO linkDao = ctx.getBean(LinkDAO.class);
+        
+        request.getSession().setAttribute("changeLink", linkDao.getLinkForId(linkId));
+        return "changeHeader/ChangeHeader";
+    }
+    
+    @RequestMapping(value="/ChangeLinkTitle")
+    public String changeLinkTitle(@RequestParam int linkId, @RequestParam String linkTitle, HttpServletRequest request){
+        if(linkTitle.equals("")){
+            linkTitle = "Default link";
+        }
+        
+        LinkDAO linkDao = ctx.getBean(LinkDAO.class);
+        Link link = linkDao.getLinkForId(linkId);
+        link.setLinkTitle(linkTitle);
+        
+        linkDao.update(link);
+        
+        request.getSession().setAttribute("changeLink", link);
+        
+        List<Link> links = (List<Link>)request.getSession().getAttribute("links");
+        Link[] linkArray = new Link[links.size()];
+        links.toArray(linkArray);
+        changeTitle(linkArray, linkId, linkTitle);
+        
+        return "changeHeader/ChangeHeader";
+    }
+    
+    @RequestMapping(value="/ChangeLinkPage")
+    public String ChangeLinkPage(@RequestParam int linkId, @RequestParam int pageId, HttpServletRequest request){
+        LinkDAO linkDao = ctx.getBean(LinkDAO.class);
+        Link link = linkDao.getLinkForId(linkId);
+        link.setDesPageId(pageId);
+        linkDao.update(link);
+        
+        request.getSession().setAttribute("changeLink", link);
+        return "changeHeader/ChangeHeader";
+    }
+    
+    @RequestMapping(value="DeleteLink")
+    public String deleteLink(@RequestParam int linkId, HttpServletRequest request){
+        LinkDAO linkDao = ctx.getBean(LinkDAO.class);
+        Link link = linkDao.getLinkForId(linkId);
+        linkDao.delete(link);
+        
+        
+        request.getSession().removeAttribute("changeLink");
+        request.getSession().setAttribute("links", linkDao.getAllBaseLinks());
+        return "changeHeader/ChangeHeader";
+    }
+    
+    private void changeTitle(Link[] links, int linkId, String newTitle){
+        for (int i = 0; i < links.length; i++) {
+            if(links[i].getLinkId() == linkId){
+                links[i].setLinkTitle(newTitle);
+            }
+            for (int j = 0; j < links[i].getChildLinks().size(); j++) {
+                Link[] linkArray = new Link[links[i].getChildLinks().size()];
+                links[i].getChildLinks().toArray(linkArray);
+                changeTitle(linkArray, linkId, newTitle);
+            }
+        }
     }
 }

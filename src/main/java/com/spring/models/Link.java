@@ -1,5 +1,6 @@
 package com.spring.models;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -7,7 +8,7 @@ import java.util.Set;
  *
  * @author JuraLocal
  */
-public class Link {
+public class Link implements Serializable{
     
     private int linkId;
     private int desPageId;

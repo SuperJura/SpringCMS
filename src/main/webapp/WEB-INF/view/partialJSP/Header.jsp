@@ -8,6 +8,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib uri="http://jurica.adamek.java3" prefix="jl" %>
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
@@ -18,9 +19,9 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="/SpringCMS/Home" class="navbar-text navbar-left">Home page</a>
+ 
         </div>
-        <c:if test="${user == null}">\
+        <c:if test="${user == null}">
             <div class="center-block pull-right">
                 <form action="/SpringCMS/Login" method="post" class="topMargin">
                     <span class="text-primary"> Username: </span>
@@ -100,4 +101,75 @@
     text-align: right;
 }
 
+.inline{
+    display: inline;
+}
+
+.just-padding {
+    padding: 15px;
+}
+
+.list-group.list-group-root {
+    padding: 0;
+    overflow: hidden;
+}
+
+.list-group.list-group-root .list-group {
+    margin-bottom: 0;
+}
+
+.list-group.list-group-root .list-group-item {
+    border-radius: 0;
+    border-width: 1px 0 0 0;
+}
+
+.list-group.list-group-root > .list-group-item:first-child {
+    border-top-width: 0;
+}
+
+.list-group.list-group-root > .list-group > .list-group-item {
+    padding-left: 30px;
+}
+
+.list-group.list-group-root > .list-group > .list-group > .list-group-item {
+    padding-left: 45px;
+}
+
+.list-group-item .glyphicon {
+    margin-right: 5px;
+}
+
+.textRigth{
+    text-align: right;
+}
+
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -1px;
+}
+
 </style>
+
+<script>
+    $(function() {
+      $('.list-group-item').on('click', function() {
+        $('.glyphicon', this)
+          .toggleClass('glyphicon-chevron-right')
+          .toggleClass('glyphicon-chevron-down');
+      });
+
+    });
+    
+    $(document).ready(function(){
+      $('.dropdown-submenu a.test').on("click", function(e){
+        $(this).next('ul').toggle();
+        e.stopPropagation();
+        e.preventDefault();
+      });
+    });
+</script>
