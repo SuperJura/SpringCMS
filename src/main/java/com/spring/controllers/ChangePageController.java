@@ -52,7 +52,7 @@ public class ChangePageController {
         dao.insertPage(p);
         if(id != null && id == 1){
             SessionUtils.setPageForEdit(id, request, ctx);
-            return "changePage/ChangeMain";
+            return "changePage/ChangePage";
         }
         else{
             request.getSession().setAttribute("pages", dao.getAllPages());
@@ -63,7 +63,7 @@ public class ChangePageController {
     @RequestMapping(value = "/PageDetails")
     public String PageDetails(@RequestParam int pageId, HttpServletRequest request){
         SessionUtils.setPageForEdit(pageId, request, ctx);
-        return "changePage/ChangeMain";
+        return "changePage/ChangePage";
     }
     
     //-------CONTENT METHODS---------
@@ -75,7 +75,7 @@ public class ChangePageController {
         dao.updatePage(p);
         
         SessionUtils.setPageForEdit(id, request, ctx);
-        return "changePage/ChangeMain";
+        return "changePage/ChangePage";
     }
     
     @RequestMapping(value="/ChangeText")
@@ -86,7 +86,7 @@ public class ChangePageController {
         dao.updateText(text);
         
         SessionUtils.setPageForEdit(text.getIdPage(), request, ctx);
-        return "changePage/ChangeMain";
+        return "changePage/ChangePage";
     }
     
     @RequestMapping(value="/AddText")
@@ -100,7 +100,7 @@ public class ChangePageController {
         textDao.insertNewText(text);
         
         SessionUtils.setPageForEdit(pageId, request, ctx);
-        return "changePage/ChangeMain";
+        return "changePage/ChangePage";
     }
     
     @RequestMapping(value="/DeleteText")
@@ -111,7 +111,7 @@ public class ChangePageController {
         textDao.deleteText(text);
         
         SessionUtils.setPageForEdit(pageId, request, ctx);
-        return "changePage/ChangeMain";
+        return "changePage/ChangePage";
     }
     
     //-------WIDGET METHODS---------
@@ -127,7 +127,7 @@ public class ChangePageController {
         pageDao.updatePage(page);
         
         SessionUtils.setPageForEdit(pageId, request, ctx);
-        return "changePage/ChangeMain";
+        return "changePage/ChangePage";
     }
     
     @RequestMapping(value="/RemoveWidget")
@@ -144,6 +144,6 @@ public class ChangePageController {
         pageDao.updatePage(page);
         
         SessionUtils.setPageForEdit(pageId, request, ctx);
-        return "changePage/ChangeMain";
+        return "changePage/ChangePage";
     }
 }

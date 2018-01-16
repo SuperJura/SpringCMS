@@ -21,8 +21,8 @@ public class ChangeHeaderController {
     @Autowired
     ApplicationContext ctx;
     
-    @RequestMapping(value="/ChangeHeader")
-    public String changeHeader(HttpServletRequest request){
+    @RequestMapping(value="/ChangeLinks")
+    public String changeLinks(HttpServletRequest request){
         LinkDAO linkDao = ctx.getBean(LinkDAO.class);
         PageDAO pageDao = ctx.getBean(PageDAO.class);
         
@@ -30,7 +30,7 @@ public class ChangeHeaderController {
         
         request.getSession().setAttribute("links", links);
         request.getSession().setAttribute("pages", pageDao.getAllPages());
-        return "changeHeader/ChangeHeader";
+        return "changeHeader/ChangeLinks";
     }
     
     @RequestMapping(value="/AddNewLink")
@@ -49,7 +49,7 @@ public class ChangeHeaderController {
         
         request.getSession().setAttribute("links", links);
         request.getSession().setAttribute("changeLink", link);
-        return "changeHeader/ChangeHeader";
+        return "changeHeader/ChangeLinks";
     }
     
     @RequestMapping(value="/ChangeLink")
@@ -57,7 +57,7 @@ public class ChangeHeaderController {
         LinkDAO linkDao = ctx.getBean(LinkDAO.class);
         
         request.getSession().setAttribute("changeLink", linkDao.getLinkForId(linkId));
-        return "changeHeader/ChangeHeader";
+        return "changeHeader/ChangeLinks";
     }
     
     @RequestMapping(value="/ChangeLinkTitle")
@@ -79,7 +79,7 @@ public class ChangeHeaderController {
         links.toArray(linkArray);
         changeTitle(linkArray, linkId, linkTitle);
         
-        return "changeHeader/ChangeHeader";
+        return "changeHeader/ChangeLinks";
     }
     
     @RequestMapping(value="/ChangeLinkPage")
@@ -91,7 +91,7 @@ public class ChangeHeaderController {
         
         request.getSession().setAttribute("changeLink", link);
         request.getSession().setAttribute("links", linkDao.getAllBaseLinks());
-        return "changeHeader/ChangeHeader";
+        return "changeHeader/ChangeLinks";
     }
     
     @RequestMapping(value="DeleteLink")
@@ -103,7 +103,7 @@ public class ChangeHeaderController {
         
         request.getSession().removeAttribute("changeLink");
         request.getSession().setAttribute("links", linkDao.getAllBaseLinks());
-        return "changeHeader/ChangeHeader";
+        return "changeHeader/ChangeLinks";
     }
     
     private void changeTitle(Link[] links, int linkId, String newTitle){

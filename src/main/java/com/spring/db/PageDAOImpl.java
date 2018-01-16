@@ -5,11 +5,15 @@
  */
 package com.spring.db;
 
+import com.spring.db.interfaces.LinkDAO;
 import com.spring.db.interfaces.PageDAO;
 import com.spring.db.interfaces.TextDAO;
+import com.spring.db.interfaces.UserStoryDAO;
+import com.spring.models.Link;
 import com.spring.models.Page;
 import com.spring.models.Text;
 import com.spring.models.User;
+import com.spring.models.UserStory;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -30,6 +34,12 @@ public class PageDAOImpl implements PageDAO{
     
     @Autowired
     TextDAO textDao;
+    
+    @Autowired
+    LinkDAO linkDao;
+    
+    @Autowired
+    UserStoryDAO userStoryDao;
 
     public PageDAOImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
@@ -88,11 +98,27 @@ public class PageDAOImpl implements PageDAO{
         Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
 
+        List<Link> links = linkDao.getAllLinks();
+        for (Link link : links) {
+            if(link.getDesPageId() == page.getPageId()){
+                link.setDesPageId(-1);
+                linkDao.update(link);
+                break;
+            }
+        }
+        
+        List<UserStory> stories = userStoryDao.getAllStoriesForPage(page.getPageId());
+        for (int i = 0; i < stories.size(); i++) {
+            session.delete(stories.get(i));
+        }
+        
         List<Text> texts = textDao.getAllTextsForPageId(page.getPageId());
         for (int i = 0; i < texts.size(); i++) {
             session.delete(texts.get(i));
         }
         session.delete(page);
+        
+        
         tx.commit();
         session.close();
     }

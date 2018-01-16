@@ -41,7 +41,8 @@
                     <input type="text" name="name"/>
                     <span class="text-primary"> Password: </span>
                     <input type="text" name="pass"/>
-                    <input type="submit" class="btn btn-info" value="Login"/>
+                    <input type="submit" class="btn btn-info" value="Login" name="login"/>
+                    <input type="submit" class="btn btn-success" value="Register" name="register"/>
                 </form>
             </div>
             
@@ -56,7 +57,7 @@
                 <ul class="nav navbar-nav">
                     <li><a href="/SpringCMS/PageDetails?pageId=1">Change main page</a></li>
                     <li><a href="/SpringCMS/ListPages">Change pages</a></li>
-                    <li><a href="/SpringCMS/ChangeHeader">Change header</a></li>
+                    <li><a href="/SpringCMS/ChangeLinks">Change Link</a></li>
                 </ul>
             </div>
         </c:if>

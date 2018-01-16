@@ -32,16 +32,41 @@ public class LoginController {
     ApplicationContext ctx;
     
     @PostMapping(value={"/Login"})
-    public String login(@RequestParam String name, @RequestParam String pass, HttpServletRequest request){
+    public String login(@RequestParam(value = "login", required =  false) String login,
+                        @RequestParam(value = "register", required =  false) String register,
+                        @RequestParam String name, 
+                        @RequestParam String pass, 
+                        HttpServletRequest request){
         
         UserDAO dao = ctx.getBean(UserDAO.class);
-        User user = dao.getUser(name, pass);
-        if(user == null){
-            Map<String, String> output = new HashMap<String, String>();
-            request.getSession().setAttribute("headerMsg", "No user found for that username and password combination.");
+        if(login!= null){
+            User user = dao.getUser(name, pass);
+            if(user == null){
+                Map<String, String> output = new HashMap<String, String>();
+                request.getSession().setAttribute("headerMsg", "No user found for that username and password combination.");
+            }
+            else{
+                request.getSession().setAttribute("user", user);
+            }
         }
-        else{
-            request.getSession().setAttribute("user", user);
+        else if(register != null){
+            if(name.equals("")){
+                request.getSession().setAttribute("headerMsg", "Username cannot be empty!");
+            }
+            else if(dao.existUsername(name)){
+                request.getSession().setAttribute("headerMsg", "Username is in use!");
+            }
+            else if(pass.length() < 4){
+                request.getSession().setAttribute("headerMsg", "Password should be min 4 characters!");
+            }
+            else{
+                User newUser = new User();
+                newUser.setName(name);
+                newUser.setPassword(pass);
+                newUser.setIsAdmin(false);
+                dao.insert(newUser);
+                request.getSession().setAttribute("headerMsg", "User successfully added, try to log in!");
+            }
         }
         return "Index";
     }
