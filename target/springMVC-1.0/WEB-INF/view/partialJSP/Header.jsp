@@ -2,9 +2,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<script src="../resources/js/jquery-2.2.3.js" type="text/javascript"></script>
-<link href="../resources/Css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-<script src="../resources/js/javascript.js" type="text/javascript"></script>
+<script src="/SpringCMS/resources/js/jquery-2.2.3.js" type="text/javascript"></script>
+<link href="/SpringCMS/resources/Css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+<script src="/SpringCMS/resources/js/javascript.js" type="text/javascript"></script>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -57,7 +57,7 @@
                 <ul class="nav navbar-nav">
                     <li><a href="/SpringCMS/PageDetails?pageId=1">Change main page</a></li>
                     <li><a href="/SpringCMS/ListPages">Change pages</a></li>
-                    <li><a href="/SpringCMS/ChangeLinks">Change Link</a></li>
+                    <li><a href="/SpringCMS/ChangeLinks">Change Links</a></li>
                 </ul>
             </div>
         </c:if>

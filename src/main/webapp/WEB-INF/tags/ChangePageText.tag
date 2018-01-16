@@ -26,7 +26,7 @@
     <c:if test="${textValue != null}">
         <form action="/SpringCMS/ChangeText" method="post">
             <input type="hidden" name="textId" value="${textId}"/>
-            <input type="text" name="value" value="${textValue}" width="300px"/>
+            <input type="text" name="value" value="${textValue}" size="100"/>
             <input type="submit" value="Change Text" class="btn btn-info"/>
             <a href="/SpringCMS/DeleteText?textId=${textId}" class="btn btn-danger">Delete Text</a>
         </form>
