@@ -60,6 +60,7 @@ public class LinkDAOImpl implements LinkDAO {
 
         boolean removed = true;
         while(removed){
+            removed = false;
             for (Link link : listLink) {
                 removed = false;
                 if(link.getParentLink().size() > 0){

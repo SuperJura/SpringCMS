@@ -34,25 +34,23 @@ public class SessionUtils {
         List<Text> texts = textDao.getAllTextsForPageId(pageId);
         List<Widget> allWidgets = widgetDao.getAllWidgets();
         
-        boolean removedWidget = true;
-        while(removedWidget){
-            removedWidget = false;
-            for (Widget pageWidget : page.getWidgets()) {
-                for (Widget allWidget : allWidgets) {
-                    if(pageWidget.getWidgetId() == allWidget.getWidgetId()){
-                        allWidgets.remove(allWidget);
-                        removedWidget = true;
-                        break;
+        if(page != null){
+            boolean removedWidget = true;
+            while(removedWidget){
+                removedWidget = false;
+                for (Widget pageWidget : page.getWidgets()) {
+                    for (Widget allWidget : allWidgets) {
+                        if(pageWidget.getWidgetId() == allWidget.getWidgetId()){
+                            allWidgets.remove(allWidget);
+                            removedWidget = true;
+                            break;
+                        }
                     }
+                    if(removedWidget) break;
                 }
-                if(removedWidget) break;
             }
         }
         
-        request.removeAttribute("page");
-        request.removeAttribute("texts");
-        request.removeAttribute("widgets");
-
         request.getSession().setAttribute("page", page);
         request.getSession().setAttribute("texts", texts);
         request.getSession().setAttribute("widgets", allWidgets);
@@ -64,29 +62,25 @@ public class SessionUtils {
         LinkDAO linkDao = ctx.getBean(LinkDAO.class);
         
         Page page = pageDao.getPage(pageId);
-        List<Text> texts = textDao.getAllTextsForPageId(pageId);
-        boolean hasUserStories = false;
-        for (Widget widget : page.getWidgets()) {
-            if(widget.getWidgetId() == Widget.WIDGET_USER_STORY){
-                hasUserStories = true;
-                break;
+        if(page != null){
+            List<Text> texts = textDao.getAllTextsForPageId(pageId);
+            boolean hasUserStories = false;
+            for (Widget widget : page.getWidgets()) {
+                if(widget.getWidgetId() == Widget.WIDGET_USER_STORY){
+                    hasUserStories = true;
+                    break;
+                }
             }
-        }
-        
-        if(hasUserStories){
-            UserStoryDAO storiesDao = ctx.getBean(UserStoryDAO.class);
-            request.getSession().setAttribute("userStories", storiesDao.getAllStoriesForPage(pageId));
-        }
-        
-        List<Link> links = linkDao.getAllBaseLinks();
-        
-        request.removeAttribute("page");
-        request.removeAttribute("texts");
-        request.removeAttribute("widgets");
-        request.removeAttribute("links");
 
+            if(hasUserStories){
+                UserStoryDAO storiesDao = ctx.getBean(UserStoryDAO.class);
+                request.getSession().setAttribute("userStories", storiesDao.getAllStoriesForPage(pageId));
+            }
+            
+            request.getSession().setAttribute("texts", texts);
+        }
+        
         request.getSession().setAttribute("page", page);
-        request.getSession().setAttribute("texts", texts);
-        request.getSession().setAttribute("links", links);
+        request.getSession().setAttribute("links", linkDao.getAllBaseLinks());
     }
 }
