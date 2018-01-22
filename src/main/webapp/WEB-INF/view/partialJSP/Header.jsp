@@ -2,7 +2,7 @@
 <script src="/SpringCMS/resources/js/Popper.js" type="text/javascript"></script>
 <script src="/SpringCMS/resources/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="/SpringCMS/resources/js/javascript.js" type="text/javascript"></script>
-<link href="/SpringCMS/resources/Css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+<link href="/SpringCMS/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>

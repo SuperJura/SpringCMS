@@ -21,6 +21,7 @@ C:\Users\JuraLocal\Desktop\springMVC\SpringCMS\src\main\java\com\spring\models\T
 C:\Users\JuraLocal\Desktop\springMVC\SpringCMS\src\main\java\com\spring\db\interfaces\UserStoryDAO.java
 C:\Users\JuraLocal\Desktop\springMVC\SpringCMS\src\main\java\com\spring\db\interfaces\UserDAO.java
 C:\Users\JuraLocal\Desktop\springMVC\SpringCMS\src\main\java\com\spring\util\SessionUtils.java
+C:\Users\JuraLocal\Desktop\springMVC\SpringCMS\src\main\java\com\spring\aop\DbPingAspect.java
 C:\Users\JuraLocal\Desktop\springMVC\SpringCMS\src\main\java\com\spring\controllers\UserStoryController.java
 C:\Users\JuraLocal\Desktop\springMVC\SpringCMS\src\main\java\com\spring\db\interfaces\LinkDAO.java
 C:\Users\JuraLocal\Desktop\springMVC\SpringCMS\src\main\java\com\spring\db\interfaces\TextDAO.java

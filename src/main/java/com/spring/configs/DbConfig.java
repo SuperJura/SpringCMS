@@ -1,5 +1,6 @@
 package com.spring.configs;
 
+import com.spring.aop.DbPingAspect;
 import com.spring.db.interfaces.LinkDAO;
 import com.spring.db.LinkDAOImpl;
 import com.spring.db.PageDAOImpl;
@@ -25,6 +26,10 @@ import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
  */
 @Configuration
 public class DbConfig {
+    
+//    @Bean DbPingAspect ping(){
+//        return new DbPingAspect();
+//    }
     
     @Bean 
     public BasicDataSource dataSource(){
