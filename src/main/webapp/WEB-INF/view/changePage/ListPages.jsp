@@ -15,14 +15,14 @@
     <body>
         <jsp:include page="../partialJSP/Header.jsp"/>
         
-        <a href="/SpringCMS/CreatePage" class="btn btn-info center-block"> Create new Page </a>
+        <a href="/SpringCMS/Admin/CreatePage" class="btn btn-info center-block"> Create new Page </a>
         <c:forEach items="${pages}" var="p">
             <div class="container topMargin">
                 <div class="jumbotron">
                   <h1>${p.title}</h1>
                   <c:if test="${p.pageId != 1}">
-                      <a href="/SpringCMS/PageDetails?pageId=${p.pageId}" class="btn btn-info"> Change page </a>
-                      <a href="/SpringCMS/DeletePage?pageId=${p.pageId}" class="btn btn-danger"> Delete page </a>
+                      <a href="/SpringCMS/Admin/PageDetails?pageId=${p.pageId}" class="btn btn-info"> Change page </a>
+                      <a href="/SpringCMS/Admin/DeletePage?pageId=${p.pageId}" class="btn btn-danger"> Delete page </a>
                   </c:if>
                 </div>  
           </div>

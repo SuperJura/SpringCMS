@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author JuraLocal
  */
 @Controller
+@RequestMapping(value="/Admin")
 public class ChangePageController {
     
     @Autowired

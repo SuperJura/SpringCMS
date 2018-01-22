@@ -20,13 +20,13 @@
         <body>
             <jsp:include page="../partialJSP/Header.jsp"/>
             <c:if test="${page == null}">
-                <a href="/SpringCMS/CreatePage?id=1" class="btn btn-info center-block">No main page! Click here to create one.</a>
+                <a href="/SpringCMS/Admin/CreatePage?id=1" class="btn btn-info center-block">No main page! Click here to create one.</a>
             </c:if>
             <c:if test="${page != null}">
                 <div class="container">
                     <div class="jumbotron">
                       <h1>${page.title}</h1>      
-                      <form action="/SpringCMS/ChangeTitle" method="post">
+                      <form action="/SpringCMS/Admin/ChangeTitle" method="post">
                         <span>
                             New title:
                         </span>
@@ -43,11 +43,11 @@
                                            <ul class="dropdown-menu">
                                               <li><b>Used widgets</b></li>
                                               <c:forEach items="${page.widgets}" var="w">
-                                                  <li><a href="/SpringCMS/RemoveWidget?pageId=${page.pageId}&widgetId=${w.widgetId}" class="small" data-value="option1" tabIndex="-1"><input type="checkbox" checked="true"/>&nbsp;${w.widgetName}</a></li>
+                                                  <li><a href="/SpringCMS/Admin/RemoveWidget?pageId=${page.pageId}&widgetId=${w.widgetId}" class="small" data-value="option1" tabIndex="-1"><input type="checkbox" checked="true"/>&nbsp;${w.widgetName}</a></li>
                                               </c:forEach>
                                               <li><b>Unused widgets</b></li>
                                               <c:forEach items="${widgets}" var="w">
-                                                  <li><a href="/SpringCMS/AddWidget?pageId=${page.pageId}&widgetId=${w.widgetId}" class="small" data-value="option1" tabIndex="-1"><input type="checkbox"/>&nbsp;${w.widgetName}</a></li>
+                                                  <li><a href="/SpringCMS/Admin/AddWidget?pageId=${page.pageId}&widgetId=${w.widgetId}" class="small" data-value="option1" tabIndex="-1"><input type="checkbox"/>&nbsp;${w.widgetName}</a></li>
                                               </c:forEach>
                                            </ul>
                                        </div>

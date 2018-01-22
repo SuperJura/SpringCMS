@@ -24,7 +24,7 @@
                 <div class="row">
                     <div class="col-md-8">
                         <div class="col-xs-4">
-                            <a href="/SpringCMS/AddNewLink?parentLinkId=-1" class="btn btn-info center-block">
+                            <a href="/SpringCMS/Admin/AddNewLink?parentLinkId=-1" class="btn btn-info center-block">
                                 Add new base Link
                             </a>
                                 <div class="list-group list-group-root well">
@@ -39,7 +39,7 @@
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         ${changeLink.linkTitle} &nbsp;
-                                        <form action="/SpringCMS/ChangeLinkTitle" class="inline">
+                                        <form action="/SpringCMS/Admin/ChangeLinkTitle" class="inline">
                                             <input type="hidden" name="linkId" value="${changeLink.linkId}" />
                                             <input type="text" name="linkTitle" />
                                             <input type="submit" value="Change title" class="btn btn-info"/>
@@ -62,7 +62,7 @@
                                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                         <c:forEach items="${pages}" var="p">
                                                             <li>
-                                                                <a class="dropdown-item" href="/SpringCMS/ChangeLinkPage?linkId=${changeLink.linkId}&pageId=${p.pageId}">
+                                                                <a class="dropdown-item" href="/SpringCMS/Admin/ChangeLinkPage?linkId=${changeLink.linkId}&pageId=${p.pageId}">
                                                                     <c:if test="${p.pageId == changeLink.desPageId}">
                                                                         <b>Current: </b>
                                                                     </c:if>
@@ -72,7 +72,7 @@
                                                         </c:forEach>
                                                         <li class="divider"></li>
                                                         <li>
-                                                            <a class="dropdown-item" href="/SpringCMS/ChangeLinkPage?linkId=${changeLink.linkId}&pageId=-1">
+                                                            <a class="dropdown-item" href="/SpringCMS/Admin/ChangeLinkPage?linkId=${changeLink.linkId}&pageId=-1">
                                                                 <c:if test="${changeLink.desPageId == -1}">
                                                                     <b>Current: </b>
                                                                 </c:if>
@@ -84,9 +84,9 @@
                                             </c:if>
                                     </div>
                                     <div class="panel-footer">
-                                        <a href="/SpringCMS/AddNewLink?parentLinkId=${changeLink.linkId}" class="btn btn-info topMargin"> Add new sublink to this link </a>
+                                        <a href="/SpringCMS/Admin/AddNewLink?parentLinkId=${changeLink.linkId}" class="btn btn-info topMargin"> Add new sublink to this link </a>
 
-                                        <a href="/SpringCMS/DeleteLink?linkId=${changeLink.linkId}" class="btn btn-danger topMargin">
+                                        <a href="/SpringCMS/Admin/DeleteLink?linkId=${changeLink.linkId}" class="btn btn-danger topMargin">
                                             Delete this link
                                         </a>
                                     </div>
