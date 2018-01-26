@@ -27,9 +27,9 @@ import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 @Configuration
 public class DbConfig {
     
-//    @Bean DbPingAspect ping(){
-//        return new DbPingAspect();
-//    }
+    @Bean DbPingAspect aopPing(){
+        return new DbPingAspect();
+    }
     
     @Bean 
     public BasicDataSource dataSource(){
