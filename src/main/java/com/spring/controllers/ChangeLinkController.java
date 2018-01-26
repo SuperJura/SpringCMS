@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @Controller
 @RequestMapping(value="/Admin")
-public class ChangeHeaderController {
+public class ChangeLinkController {
     
     @Autowired
     ApplicationContext ctx;

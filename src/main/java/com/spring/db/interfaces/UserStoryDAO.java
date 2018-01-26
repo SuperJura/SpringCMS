@@ -9,5 +9,7 @@ import java.util.List;
  */
 public interface UserStoryDAO {
     public List<UserStory> getAllStoriesForPage(int pageId);
+    public UserStory getUserStoryForId(int id);
     public void insertNewStory(UserStory story);
+    public void deleteStory(UserStory story);
 }

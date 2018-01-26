@@ -2,10 +2,7 @@ package com.spring.db;
 
 import com.spring.db.interfaces.TextDAO;
 import com.spring.models.Text;
-import com.spring.models.User;
 import java.sql.Date;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.List;
 import org.hibernate.Criteria;
@@ -13,7 +10,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Criterion;
-import org.hibernate.criterion.LogicalExpression;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 

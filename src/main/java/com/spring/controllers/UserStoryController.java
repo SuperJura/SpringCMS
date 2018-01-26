@@ -36,4 +36,21 @@ public class UserStoryController {
         SessionUtils.setPageForDisplay(pageId, request, ctx);
         return "Index";
     }
+    
+    @RequestMapping(value="/DeleteUserStory")
+    public String deleteUserStory(@RequestParam int id, HttpServletRequest request){
+        UserStoryDAO storyDao = ctx.getBean(UserStoryDAO.class);
+        
+        UserStory story = storyDao.getUserStoryForId(id);
+        int pageId = story.getIdPage();
+        
+        User user = (User)request.getSession().getAttribute("user");
+        
+        if(user != null && (story.getUser().getUserId() == user.getUserId() || user.isIsAdmin())){
+            storyDao.deleteStory(story);
+        }
+        
+        SessionUtils.setPageForDisplay(pageId, request, ctx);
+        return "Index";
+    }
 }

@@ -33,12 +33,33 @@ public class UserStoryDAOImpl implements UserStoryDAO{
 
         return stories;
     }
+    
+    @Override
+    public UserStory getUserStoryForId(int id) {
+        Session session = sessionFactory.openSession();
+        UserStory story = (UserStory) session
+                .createCriteria(UserStory.class)
+                .add(Restrictions.eq("userStoryId", id))
+                .uniqueResult();
+        session.close();
+
+        return story;
+    }
 
     @Override
     public void insertNewStory(UserStory story) {
         Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
         session.save(story);
+        tx.commit();
+        session.close();
+    }
+
+    @Override
+    public void deleteStory(UserStory story) {
+        Session session = sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
+        session.delete(story);
         tx.commit();
         session.close();
     }

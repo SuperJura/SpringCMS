@@ -18,14 +18,25 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  *
  * @author JuraLocal
  */
 @Configuration
+@EnableTransactionManagement()
 public class DbConfig {
+    
+    @Bean()
+    public HibernateTransactionManager txName(){
+        HibernateTransactionManager txName= new HibernateTransactionManager();
+        txName.setSessionFactory(sessionFactory().getObject());
+        txName.setDataSource(dataSource());
+        return txName;
+   }
     
     @Bean DbPingAspect aopPing(){
         return new DbPingAspect();

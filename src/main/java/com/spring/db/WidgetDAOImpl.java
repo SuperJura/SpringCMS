@@ -1,7 +1,6 @@
 package com.spring.db;
 
 import com.spring.db.interfaces.WidgetDAO;
-import com.spring.models.Page;
 import com.spring.models.Widget;
 import java.util.List;
 import org.hibernate.Criteria;

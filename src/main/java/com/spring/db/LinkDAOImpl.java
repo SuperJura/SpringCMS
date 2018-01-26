@@ -10,9 +10,9 @@ import com.spring.models.Link;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -39,7 +39,7 @@ public class LinkDAOImpl implements LinkDAO {
     
     @Override
     public Link getLinkForId(int linkId) {
-                Session session = sessionFactory.openSession();
+        Session session = sessionFactory.openSession();
         Link link = (Link) session
                 .createCriteria(Link.class)
                 .add(Restrictions.eq("linkId", linkId))
@@ -74,33 +74,27 @@ public class LinkDAOImpl implements LinkDAO {
         return listLink;
     }
 
+    @Transactional
     @Override
     public void insert(Link link) {
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.beginTransaction();
+        Session session = sessionFactory.getCurrentSession();
         session.save(link);
-        tx.commit();
-        session.close();
     }
 
+    @Transactional
     @Override
     public void update(Link link) {
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.beginTransaction();
+        Session session = sessionFactory.getCurrentSession();
         session.update(link);
-        tx.commit();
-        session.close();
     }
 
+    @Transactional
     @Override
     public void delete(Link link) {
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.beginTransaction();
+        Session session = sessionFactory.getCurrentSession();
         for (Link child : link.getChildLinks()) {
             delete(child);
         }
         session.delete(link);
-        tx.commit();
-        session.close();
     }
 }

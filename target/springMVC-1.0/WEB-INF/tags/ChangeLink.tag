@@ -19,7 +19,7 @@
     </span>
 </a>
 <div class="list-group collapse" id="${link.linkId}">
-    <a href="/SpringCMS/Admin/ChangeLink?linkId=${link.linkId}"class="list-group-item">Change Link: ${link.linkTitle}</a>
+    <a href="/SpringCMS/Admin/ChangeLink?linkId=${link.linkId}"class="list-group-item list-group-item-info">Change Link: ${link.linkTitle}</a>
     <c:forEach items="${link.childLinks}" var="child">
         <jl:ChangeLink link="${child}"/>
     </c:forEach>

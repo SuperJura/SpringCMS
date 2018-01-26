@@ -1,3 +1,4 @@
+com\spring\controllers\ChangeLinkController.class
 com\spring\models\Page.class
 com\spring\db\interfaces\UserDAO.class
 com\spring\db\UserStoryDAOImpl.class
@@ -20,7 +21,6 @@ com\spring\controllers\LoginController.class
 com\spring\db\LinkDAOImpl.class
 com\spring\filters\AdminFilter.class
 com\spring\util\SessionUtils.class
-com\spring\controllers\ChangeHeaderController.class
 com\spring\controllers\UserStoryController.class
 com\spring\db\WidgetDAOImpl.class
 com\spring\models\Widget.class

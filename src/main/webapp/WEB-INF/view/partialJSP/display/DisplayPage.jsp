@@ -19,7 +19,7 @@
             <c:if test="${user != null}">
                 <form action="/SpringCMS/WidgetSubmitUserStory" method="post">
                     <input type="hidden" name="pageId" value="${page.pageId}"/>
-                    <input type="text" placeholder="Enter your comment here" name="userTxt"/>
+                    <input type="text" placeholder="Enter your comment here" name="userTxt" size="85%"/>
                     <input type="submit" class="btn btn-info" value="Submit User Story"/>
                 </form>
             </c:if>
@@ -28,7 +28,12 @@
                 <h2>User Stories:</h2>
                 <c:forEach items="${userStories}" var="story">
                     <div class="panel panel-default">
-                        <div class="panel-heading">${story.user.name}</div>
+                        <div class="panel-heading">
+                            ${story.user.name}
+                            <c:if test="${story.user.userId == user.userId || user.isAdmin}">
+                                    <a class="btn btn-danger pull-right marginBot" href="/SpringCMS/DeleteUserStory?id=${story.userStoryId}">Delete Story</a>
+                            </c:if>
+                        </div>
                         <div class="panel-body">
                             <span class="userStory">
                                 ${story.storyText}

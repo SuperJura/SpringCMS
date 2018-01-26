@@ -5,9 +5,9 @@ C:\Projects\SpringCMS\src\main\java\com\spring\models\UserStory.java
 C:\Projects\SpringCMS\src\main\java\com\spring\controllers\IndexController.java
 C:\Projects\SpringCMS\src\main\java\com\spring\db\interfaces\WidgetDAO.java
 C:\Projects\SpringCMS\src\main\java\com\spring\configs\DbConfig.java
+C:\Projects\SpringCMS\src\main\java\com\spring\controllers\ChangeLinkController.java
 C:\Projects\SpringCMS\src\main\java\com\spring\db\TextDAOImpl.java
 C:\Projects\SpringCMS\src\main\java\com\spring\filters\AdminFilter.java
-C:\Projects\SpringCMS\src\main\java\com\spring\controllers\ChangeHeaderController.java
 C:\Projects\SpringCMS\src\main\java\com\spring\db\PageDAOImpl.java
 C:\Projects\SpringCMS\src\main\java\com\spring\models\Page.java
 C:\Projects\SpringCMS\src\main\java\com\spring\db\WidgetDAOImpl.java
